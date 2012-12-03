@@ -1,7 +1,7 @@
 === Shortcodify ===
 Contributors: lrnz
 Donate link: 
-Tags: shortcode shortcodes tiny rte widget widgets menu sitemap menu menus
+Tags: shortcode shortcodes tiny rte widget widgets menu sitemap menu menus shortcodify shortcodifi shortcod
 Requires at least: 3.0
 Tested up to: 3.4.2
 Stable tag: 
