@@ -1,6 +1,6 @@
 === Shortcodify ===
 Contributors: lrnz
-Tags: shortcode shortcodes tiny rte widget widgets menu sitemap menu menus shortcodify shortcodifi shortcod
+Tags: shortcode, shortcodes, tiny, rte, widget, widgets, sitemap, menu, menus, shortcodify, shortcodifi, shortcod
 Requires at least: 3.0
 Tested up to: 3.4.2
 License: GPLv2 or later
@@ -22,13 +22,14 @@ But Shortcodify does more.
 If you want to, Shortcodify creates a new widget area in, that you can use with the `[widget]` shortcode.
 
 See all (actual) **possible shortcodes** below:
-* `[wsc class=myCustomClass]` TEXT `[/wsc]` - for individual CSS-classes
-* `[unshortcode]` TEXT `[/unshortcode]` - other shortcodes in this shortcode will be ignored
-* `[br]` - adds a linebreak (with clearing)
-* `[hr]` - adds a horizontal line
-* `[date]` - inserts the actual date
-* `[time]` -  inserts the actual time
-* `[widget]` - inserts the content of the "Shortcodify" widget area
+
+*  `[wsc class=myCustomClass]` TEXT `[/wsc]` - for individual CSS-classes
+*  `[unshortcode]` TEXT `[/unshortcode]` - other shortcodes in this shortcode will be ignored
+*  `[br]` - adds a linebreak (with clearing)
+*  `[hr]` - adds a horizontal line
+*  `[date]` - inserts the actual date
+*  `[time]` -  inserts the actual time
+*  `[widget]` - inserts the content of the "Shortcodify" widget area
 
 
 Is a useful shortcode missing?
