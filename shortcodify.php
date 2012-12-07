@@ -16,7 +16,7 @@ Author: Arne Lorenz
 
 Plugin Name: Shortcodify
 Plugin URI: http://www.arnelorenz.de/
-Description: Plugin to add shortcodes
+Description: Shortcodify adds some useful shortcodes to WordPress. More information and configuration <a href="options-general.php?page=shortcodify">on config page</a>. 
 */
 
 if (!class_exists('shortcodify')) {
