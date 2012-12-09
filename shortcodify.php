@@ -16,7 +16,7 @@ Author: Arne Lorenz
 
 Plugin Name: Shortcodify
 Plugin URI: http://www.arnelorenz.de/
-Description: Shortcodify adds some useful shortcodes to WordPress. More information and configuration <a href="options-general.php?page=shortcodify">on config page</a>. 
+Description: Plugin to add shortcodes
 */
 
 if (!class_exists('shortcodify')) {
@@ -25,12 +25,10 @@ if (!class_exists('shortcodify')) {
 		 * @var string The plugin version
 		 */
 		var $version = '1.0.0';
-
 		/**
 		 * @var string The options string name for this plugin
 		 */
 		var $optionsName = 'wp_test_options';
-		
 		/**
 		 * @var string $pluginurl The url to this plugin
 		 */
@@ -40,11 +38,14 @@ if (!class_exists('shortcodify')) {
 		 */
 		var $pluginpath = '';
 
+
+		var $activeFunctions = array();
+		var $bookmark_args = array();
+		    
 		/**
 		 * @var array $options Stores the options for this plugin
 		 */
 		var $options = array();
-
 		/**
 		 * PHP 4 Compatible Constructor
 		 */
@@ -63,102 +64,7 @@ if (!class_exists('shortcodify')) {
 			$this->pluginurl = plugins_url($name) . "/";
 			$this->pluginpath = WP_PLUGIN_DIR . "/$name/";
 
-			//Initialize the options
-			$this->get_options();
-			
-			
-			//Actions
-			add_action('admin_menu', array(&$this, 'admin_menu_link'));
-			
-			// SHORTCODES
-			add_shortcode( 'wsc', array(&$this, 'wrap_shortcode_func') );
-			add_shortcode( 'unshortcode', array(&$this, 'wrap_unshortcode_func') );
-			add_shortcode( 'br', array(&$this, 'createlinebreak') );
-			add_shortcode( 'hr', array(&$this, 'createline') );
-			add_shortcode( 'date', array(&$this, 'createDate') );
-			add_shortcode( 'time', array(&$this, 'createTime') );
-			add_shortcode( 'links', array(&$this, 'createLinks') );
-			
-			
-			// To use a widget-area in a shortcode
-			if($this->options['sc_widget'])
-			{
-				$this->useWidgets();
-			}
-			
-			// To use a menu in a widget
-			if($this->options['sc_menu'])
-			{
-				$this->useMenus();
-			}
-
-		}
-		
-		function useWidgets(){
-			add_action( 'widgets_init', array(&$this, 'shortcodify_widgets_init') );
-			
-			add_shortcode( 'widget', array(&$this, 'createWidget') );
-		}
-		function useMenus(){
-			add_action( 'init', array(&$this, 'register_my_menus') );
-			add_shortcode( 'menu', array(&$this, 'createMenu') );
-		}
-		
-		function register_my_menus() {
-		  register_nav_menus(
-		    array( 'shortcodify' => __( 'Shortcodify Menu' ) )
-		  );
-		}
-		
-		
-		function wrap_shortcode_func_hm_KP($atts, $content= NULL) {
-			 return '<span class="wrap_shortcode '.$atts['class'].'">'.apply_filters('the_content', $content).'</span>';
-		}
-		
-		function wrap_unshortcode_func($atts, $content= NULL) {
-			 return $content;
-		}
-		
-		function wrap_shortcode_func($atts, $content= NULL) {
-			 return '<span class="wrap_shortcode '.$atts['link'].'">'.do_shortcode($content).'</span>';
-		}
-		
-		function createlinebreak() {
-			 return '<br class="clear" style="clear: both">';
-		}
-		
-		function createDate() {
-			 return '<span class="sc_date">'.date_i18n( get_option('date_format') ).'</span>';
-		}
-		
-		function createTime() {
-			 return '<span class="sc_time">'.date_i18n( get_option('time_format') ).'</span>';
-		}
-		
-		function createline() {
-			 return '<hr class="clear" style="clear: both">';
-		}
-		
-		function createWidget() {
-			ob_start();
-			dynamic_sidebar('Shortcodify');
-			$html = ob_get_contents();
-			ob_end_clean();
-			
-			return '<div class="shortcodify_widget">'.$html.'</div>';
-		}	
-		
-		function createMenu() {
-			ob_start();
-			wp_nav_menu( array('menu' => 'Shortcodify' ));
-			$html = ob_get_contents();
-			ob_end_clean();
-			
-			return '<div class="shortcodify_menu">'.$html.'</div>';
-		}
-		
-		function createLinks($atts, $content= NULL) {
-			$args = array(
+			$this->bookmark_args = array(
 			    'orderby'          => 'name',
 			    'order'            => 'ASC',
 			    'limit'            => -1,
@@ -178,10 +84,143 @@ if (!class_exists('shortcodify')) {
 			    'category_before'  => '<li id=%id class=%class>',
 			    'category_after'   => '</li>' );
 			    
-			$html = wp_list_bookmarks( $args );
+			//Initialize the options
+			$this->get_options();
 			
-			return '<ul class="shortcodify_links">'.$html.'</ul>';
+			// which shortcodes are active?
+			$this->check_active_functions();
+			
+			//Actions
+			$this->create_Actions();
+			
+			// ADD the shortcodes
+			$this->create_shortcode();
+		}
+		
+		
+// ----  -----------
+		private function check_active_functions(){
+			$this->activeFunctions = array(
+				'wsc',
+				'unshortcode',
+				'br',
+				'hr',
+				'date',
+				'time',
+				'links',
+				'random'
+			) ;
+		}
+		
+		private function create_Actions(){
+			// WP Admin Menu entry
+			add_action('admin_menu', array(&$this, 'admin_menu_link'));	
+		}
+		
+		private function create_shortcode(){
+			// SHORTCODES
+			
+			foreach($this->activeFunctions as $name)
+			{
+				add_shortcode( $name, array(&$this, $name) );	
+			}
+			
+			// To use a widget-area in a shortcode
+			if($this->options['sc_widget'])
+			{
+				$this->useWidgets();
+			}
+			
+			// To use a menu in a widget
+			if($this->options['sc_menu'])
+			{
+				$this->useMenus();
+			}
+		}
+		
+		//function wrap_shortcode_func($atts, $content= NULL)
+
+		public function __call($name, $argumente) {
+			$atts = $argumente[0];
+			$content = $argumente[1];
+			switch($name){
+				case 'hr':
+					$rtn = '<hr class="clear" style="clear: both">';
+				break;
+				case 'date':
+					$rtn = '<span class="sc_date">'.date_i18n( get_option('date_format') ).'</span>';
+				break;
+				case 'time':
+					$rtn = '<span class="sc_time">'.date_i18n( get_option('time_format') ).'</span>';
+				break;
+				case 'br':
+					$rtn = '<br class="clear" style="clear: both">';
+				break;
+				case 'unshortcode':
+					$rtn = $content;
+				break;
+				case 'wsc':
+					//return '<span class="wrap_shortcode '.$atts['class'].'">'.apply_filters('the_content', $content).'</span>';
+					$rtn = '<span class="wrap_shortcode '.$atts['link'].'">'.do_shortcode($content).'</span>';
+				break;
+				case 'links':					  
+					$html = wp_list_bookmarks( $this->bookmark_args );
+					$rtn = '<ul class="shortcodify_links">'.$html.'</ul>';
+				break;
+				case 'random':
+					if( isset( $atts['trennzeichen'] ) ) $trenner = $atts['trennzeichen'];
+					else {$trenner = PHP_EOL;}
+					
+					$content = explode($trenner, $content);
+					$rnd = rand(0, count($content) - 1);
+					$rtn = '<span class="wrap_shortcode random">'.do_shortcode( $content[ $rnd ] ).'</span>';
+				break;
+				default:
+					$rtn = $content;
+			}
+			return $rtn;
+		}
+
+		function useWidgets(){
+			add_action( 'widgets_init', array(&$this, 'shortcodify_widgets_init') );
+			add_shortcode( 'widget', array(&$this, 'createWidget') );
+		}
+		
+		function useMenus(){
+			add_action( 'init', array(&$this, 'register_my_menus') );
+			add_shortcode( 'menu', array(&$this, 'createMenu') );
+		}
+		
+		function register_my_menus() {
+		  register_nav_menus(
+		    array( 'shortcodify' => __( 'Shortcodify Menu' ) )
+		  );
+		}
+
+		static function getWidgetContent($area = 'Shortcodify'){
+			ob_start();
+			dynamic_sidebar($area);
+			$html = ob_get_contents();
+			ob_end_clean();
+			
+			return $html;			
+		}		
+		
+		function createWidget() {
+			$html = $this->getWidgetContent('Shortcodify');
+			return '<div class="shortcodify_widget">'.$html.'</div>';
 		}	
+		
+		
+		// does not work in this way
+		function createMenu() {
+			ob_start();
+			wp_nav_menu( array('menu' => 'Shortcodify' ));
+			$html = ob_get_contents();
+			ob_end_clean();
+			
+			return '<div class="shortcodify_menu">'.$html.'</div>';
+		}
 
 		//adds a widget Area
 		/**
@@ -301,6 +340,7 @@ if (!class_exists('shortcodify')) {
 <form method="post" id="wp_test_options">
 <?php wp_nonce_field('wp-test-update-options'); ?>
 	<h3><?php _e('Settings', $this->localizationDomain); ?></h3>
+	<h5><?php _e('See all possible shortcodes <a href="http://www.arnelorenz.de/shortcodify/">here</a>', $this->localizationDomain); ?></h5>
 	<table class="form-table">
 	
 		<tr valign="top">
