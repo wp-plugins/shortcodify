@@ -4,7 +4,7 @@ Donate link:
 Tags: shortcode shortcodes tiny rte widget widgets menu sitemap menu menus
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
+= 1.1.0 =
 New functions, new shortcode: random
 
 
