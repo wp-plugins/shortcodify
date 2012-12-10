@@ -4,23 +4,16 @@ Donate link:
 Tags: shortcode shortcodes tiny rte widget widgets menu sitemap menu menus
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-= Shortcodify =
 Shortcodify adds some useful Shortcodes to your blog.
-Shortcodes are small snippetts use in your textfield / tiny / rte field. In the live version of the page they will be replaced with something different.
-One example for a shortcode of this plugin is [date] when you use it the tiny, in the live version you can see the actual Date.
-But Shortcodify does more.
-If you want to, Shortcodify creates a new widget area in, that you can use with the [widget] shortcode.
 
 == Description ==
 
-= Shortcodify =
 Shortcodify adds some useful Shortcodes to your blog.
 
-= = 
 Shortcodes are small snippetts use in your textfield / tiny / rte field. In the live version of the page they will be replaced with something different.
 One example for a shortcode of this plugin is [date] when you use it the tiny, in the live version you can see the actual Date.
 But Shortcodify does more.
@@ -34,6 +27,7 @@ See all (actual) **possible shortcodes** below:
 * [date] - inserts the actual date
 * [time] -  inserts the actual time
 * [widget] - inserts the content of the "Shortcodify" widget area
+* [random] Text1 Text2 [/random] - returns only one of included areas (seperated by linebreak or whatever)
 
 = Is a useful shortcode missing? =
 Please send me a request!
@@ -58,7 +52,8 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
-
+= 1.1.0 =
+New functions, new shortcode: random
 
 
 == Upgrade notice ==
