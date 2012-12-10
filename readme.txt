@@ -53,11 +53,18 @@ Please ask me.
 
 == Changelog ==
 = 1.1.0 =
-New functions, new shortcode: random
+New shortcode: random
+
+= 1.0.0 =
+all new
 
 
 == Upgrade notice ==
+= 1.1.0 =
+New functions, new shortcode
 
+= 1.0.0 =
+First version of plugin
 
 
 == Arbitrary section 1 ==
