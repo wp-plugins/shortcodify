@@ -8,19 +8,12 @@ Stable tag:
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-= Shortcodify =
 Shortcodify adds some useful Shortcodes to your blog.
-Shortcodes are small snippetts use in your textfield / tiny / rte field. In the live version of the page they will be replaced with something different.
-One example for a shortcode of this plugin is [date] when you use it the tiny, in the live version you can see the actual Date.
-But Shortcodify does more.
-If you want to, Shortcodify creates a new widget area in, that you can use with the [widget] shortcode.
 
 == Description ==
 
-= Shortcodify =
 Shortcodify adds some useful Shortcodes to your blog.
 
-= = 
 Shortcodes are small snippetts use in your textfield / tiny / rte field. In the live version of the page they will be replaced with something different.
 One example for a shortcode of this plugin is [date] when you use it the tiny, in the live version you can see the actual Date.
 But Shortcodify does more.
@@ -34,6 +27,7 @@ See all (actual) **possible shortcodes** below:
 * [date] - inserts the actual date
 * [time] -  inserts the actual time
 * [widget] - inserts the content of the "Shortcodify" widget area
+* [random] Text1 Text2 [/random] - returns only one of included areas (seperated by linebreak or whatever)
 
 = Is a useful shortcode missing? =
 Please send me a request!
