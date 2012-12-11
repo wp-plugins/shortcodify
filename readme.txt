@@ -19,15 +19,16 @@ One example for a shortcode of this plugin is `[date]` when you use it the tiny,
 But Shortcodify does more.
 If you want to, Shortcodify creates a new widget area in, that you can use with the [widget] shortcode.
 
-See all (actual) **possible shortcodes** below:
-* `[wsc class=myCustomClass] TEXT [/wsc] - for individual CSS-classes`
-* `[unshortcode] TEXT [/unshortcode] - other shortcodes in this shortcode will be ignored`
-* `[br] - adds a linebreak (with clearing)`
-* `[hr] - adds a horizontal line`
-* `[date] - inserts the actual date`
-* `[time] -  inserts the actual time`
-* `[widget] - inserts the content of the "Shortcodify" widget area`
-* `[random] Text1 Text2 [/random] - returns only one of included areas (seperated by linebreak or whatever)`
+See some **possible shortcodes** below:
+*  `[wsc class=myCustomClass]` TEXT `[/wsc]` - for individual CSS-classes
+*  `[unshortcode]` TEXT `[/unshortcode]` - other shortcodes in this shortcode will be ignored
+*  `[br]` - adds a linebreak (with clearing)
+*  `[hr]` - adds a horizontal line
+*  `[date]` - inserts the actual date
+*  `[time]` -  inserts the actual time
+*  `[widget]` - inserts the content of the "Shortcodify" widget area
+*  `[random]` Text1 Text2 [/random] - returns only one of included areas (seperated by linebreak or whatever)`
+*  A few more useful shortcodes
 
 = Is a useful shortcode missing? =
 Please send me a request!
