@@ -9,7 +9,7 @@ along with this software. In the main directory, see: /licensing/
 If not, see: <http://www.gnu.org/licenses/>.
 */
 /*
-Version: 1.0.0
+Version: 1.1.0
 
 Author URI: http://www.arnelorenz.de/
 Author: Arne Lorenz
@@ -24,7 +24,7 @@ if (!class_exists('shortcodify')) {
 		/**
 		 * @var string The plugin version
 		 */
-		var $version = '1.0.0';
+		var $version = '1.1.0';
 		/**
 		 * @var string The options string name for this plugin
 		 */
