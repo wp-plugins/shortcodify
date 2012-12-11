@@ -32,12 +32,16 @@ See all (actual) **possible shortcodes** below:
 = Is a useful shortcode missing? =
 Please send me a request!
 
+Version: trunk
+
 == Installation ==
 
 1. Upload `shortcodify`-folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Have a look to the settings page.
 4. Use the shortcodes in tiny-field.
+
+Version: trunk
 
 == Frequently asked questions ==
 
