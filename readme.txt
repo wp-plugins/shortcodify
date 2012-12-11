@@ -37,6 +37,8 @@ Please send me a request!
 3. Have a look to the settings page.
 4. Use the shortcodes in tiny-field.
 
+Version: 1.0.0
+
 == Frequently asked questions ==
 
 = Do you have any questions? =
