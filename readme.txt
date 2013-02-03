@@ -69,6 +69,3 @@ New functions, new shortcode
 = 1.0.0 =
 First version of plugin
 
-
-== Arbitrary section 1 ==
-
