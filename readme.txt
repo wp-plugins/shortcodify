@@ -1,7 +1,7 @@
 === Shortcodify ===
 Contributors: lrnz
 Donate link: 
-Tags: shortcode shortcodes tiny rte widget widgets menu sitemap menu menus
+Tags: shortcode,shortcodes,tiny,rte,widget,widgets,menu,sitemap,menu,menus
 Requires at least: 3.0
 Tested up to: 3.4.2
 Stable tag: 1.1.0
@@ -27,7 +27,7 @@ See some **possible shortcodes** below:
 *  `[date]` - inserts the actual date
 *  `[time]` -  inserts the actual time
 *  `[widget]` - inserts the content of the "Shortcodify" widget area
-*  `[random]` Text1 Text2 [/random] - returns only one of included areas (seperated by linebreak or whatever)`
+*  `[random]` Text1 Text2 `[/random]` - returns only one of included areas (seperated by linebreak or whatever)`
 *  A few more useful shortcodes
 
 = Is a useful shortcode missing? =
@@ -70,7 +70,3 @@ New functions, new shortcode
 
 = 1.0.0 =
 First version of plugin
-
-
-== Arbitrary section 1 ==
-
