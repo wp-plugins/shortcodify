@@ -28,7 +28,7 @@ if (!class_exists('shortcodify')) {
 		/**
 		 * @var string The options string name for this plugin
 		 */
-		var $optionsName = 'wp_test_options';
+		var $optionsName = 'wp_shortcodify_options';
 		/**
 		 * @var string $pluginurl The url to this plugin
 		 */
@@ -56,14 +56,14 @@ if (!class_exists('shortcodify')) {
 		 */
 		function __construct() {
 			$name = dirname(plugin_basename(__FILE__));
-
+			$this->localizationDomain = $name;
 			//Language Setup
-			// load_plugin_textdomain($this->localizationDomain, false, "$name/I18n/");
+			load_plugin_textdomain($this->localizationDomain, false, $name.'/lang/');
 
 			//"Constants" setup
 			$this->pluginurl = plugins_url($name) . "/";
 			$this->pluginpath = WP_PLUGIN_DIR . "/$name/";
-
+			
 			$this->bookmark_args = array(
 			    'orderby'          => 'name',
 			    'order'            => 'ASC',
@@ -95,10 +95,11 @@ if (!class_exists('shortcodify')) {
 			
 			// ADD the shortcodes
 			$this->create_shortcode();
+			
 		}
 		
-		
 // ----  -----------
+
 		private function check_active_functions(){
 			$this->activeFunctions = array(
 				'wsc',
@@ -192,9 +193,9 @@ if (!class_exists('shortcodify')) {
 		}
 		
 		function register_my_menus() {
-		  register_nav_menus(
-		    array( 'shortcodify' => __( 'Shortcodify Menu' ) )
-		  );
+		    register_nav_menus( array(
+					'Shortcodify' => __('Shortcodify Menu, for sitemaps')
+			) );
 		}
 
 		static function getWidgetContent($area = 'Shortcodify'){
@@ -211,8 +212,7 @@ if (!class_exists('shortcodify')) {
 			return '<div class="shortcodify_widget">'.$html.'</div>';
 		}	
 		
-		
-		// does not work in this way
+		// menu shortcode output
 		function createMenu() {
 			ob_start();
 			wp_nav_menu( array('menu' => 'Shortcodify' ));
@@ -311,8 +311,7 @@ if (!class_exists('shortcodify')) {
 			if (isset($_POST['wp_test_save'])) {
 				if (wp_verify_nonce($_POST['_wpnonce'], 'wp-test-update-options')) {
 					$this->options['sc_widget'] = (isset($_POST['sc_widget']) && $_POST['sc_widget'] === 'on') ? true : false;
-					
-					//$this->options['sc_menu'] = (isset($_POST['sc_menu']) && $_POST['sc_menu'] === 'on') ? true : false;
+					$this->options['sc_menu'] = (isset($_POST['sc_menu']) && $_POST['sc_menu'] === 'on') ? true : false;
 					/*
 					$this->options['title'] = $_POST['title'];
 					$this->options['previouspage'] = $_POST['previouspage'];
@@ -347,12 +346,12 @@ if (!class_exists('shortcodify')) {
 			<th scope="row"><?php _e('Create widget-shortcode', $this->localizationDomain); ?></th>
 			<td><label for="empty">
 				<input type="checkbox" id="sc_widget" name="sc_widget" <?php echo ($this->options['sc_widget'] === true) ? "checked='checked'" : ""; ?>/> <?php 
-				_e('Creates a widget-area for a shortcode. Use it with [widget] ', $this->localizationDomain); ?></label></td>
+				_e('Creates a widget-area for a shortcode. Use it with [widget]', $this->localizationDomain); ?></label></td>
 		</tr>
-		<tr valign="top" style="display: none">
+		<tr valign="top" style="display: ">
 			<th scope="row"><?php _e('Create menu-shortcode', $this->localizationDomain); ?></th>
 			<td><label for="empty">
-				<input type="checkbox" id="sc_widget" name="sc_widget" <?php echo ($this->options['sc_widget'] === true) ? "checked='checked'" : ""; ?>/> <?php 
+				<input type="checkbox" id="sc_menu" name="sc_menu" <?php echo ($this->options['sc_menu'] === true) ? "checked='checked'" : ""; ?>/> <?php 
 				_e('Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. Use shortcode with [menu] ', $this->localizationDomain); ?></label></td>
 		</tr>
 	
@@ -403,7 +402,7 @@ if (!class_exists('shortcodify')) {
 		</tr>
 	</table>
 	<p class="submit">
-		<input type="submit" value="Save Changes" name="wp_test_save" class="button-primary" />
+		<input type="submit" value="<?php _e('Save Changes'); ?>" name="wp_test_save" class="button-primary" />
 	</p>
 </form>
 </div>
