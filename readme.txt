@@ -27,7 +27,8 @@ See some **possible shortcodes** below:
 *  `[date]` - inserts the actual date
 *  `[time]` -  inserts the actual time
 *  `[widget]` - inserts the content of the "Shortcodify" widget area
-*  `[random]` Text1 Text2 `[/random]` - returns only one of included areas (seperated by linebreak or whatever)`
+*  `[random]` Text1 Text2 `[/random]` - returns only one of included areas (seperated by linebreak or whatever)
+*  `[menu]` - adds a new menu to the nav-menus of WordPress. This shortcode inserts the content to the page for sitemaps or sitelist.
 *  A few more useful shortcodes
 
 = Is a useful shortcode missing? =
@@ -57,6 +58,9 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
+= 1.2.0 =
+New shortcode: menu to insert pagelists or sitemaps
+
 = 1.1.0 =
 New shortcode: random
 
@@ -65,6 +69,9 @@ all new
 
 
 == Upgrade notice ==
+= 1.2.0 =
+New shortcode: menu to insert pagelists or sitemaps
+
 = 1.1.0 =
 New functions, new shortcode
 
