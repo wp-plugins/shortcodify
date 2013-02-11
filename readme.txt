@@ -17,19 +17,20 @@ Shortcodify adds some useful Shortcodes to your blog.
 Shortcodes are small snippetts use in your textfield / tiny / rte field. In the live version of the page they will be replaced with something different.
 One example for a shortcode of this plugin is `[date]` when you use it the tiny, in the live version you can see the actual Date.
 But Shortcodify does more.
-If you want to, Shortcodify creates a new widget area in, that you can use with the [widget] shortcode.
+If you want to, Shortcodify creates a new widget area in, that you can use with the `[widget]` shortcode.
 
 See some **possible shortcodes** below:
-*  `[wsc class=myCustomClass]` TEXT `[/wsc]` - for individual CSS-classes
-*  `[unshortcode]` TEXT `[/unshortcode]` - other shortcodes in this shortcode will be ignored
-*  `[br]` - adds a linebreak (with clearing)
-*  `[hr]` - adds a horizontal line
-*  `[date]` - inserts the actual date
-*  `[time]` -  inserts the actual time
-*  `[widget]` - inserts the content of the "Shortcodify" widget area
-*  `[random]` Text1 Text2 `[/random]` - returns only one of included areas (seperated by linebreak or whatever)`
-*  `[menu]` - adds a new menu to the nav-menus of WordPress. This shortcode inserts the content to the page for sitemaps or sitelist.
-*  A few more useful shortcodes
+
+*   `[wsc class=myCustomClass] TEXT [/wsc]` - for individual CSS-classes
+*   `[unshortcode] TEXT [/unshortcode]` - other shortcodes in this shortcode will be ignored
+*   `[br]` - adds a linebreak (with clearing)
+*   `[hr]` - adds a horizontal line
+*   `[date]` - inserts the actual date
+*   `[time]` -  inserts the actual time
+*   `[widget]` - inserts the content of the "Shortcodify" widget area
+*   `[random] Text1 Text2 [/random]` - returns only one of included areas (seperated by linebreak or whatever)
+*   `[menu]` - adds a new menu to the nav-menus of WordPress. This shortcode inserts the content to the page for sitemaps or sitelist.
+*   A few more useful shortcodes
 
 = Is a useful shortcode missing? =
 Please send me a request!
@@ -58,6 +59,7 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
+
 = 1.2.0 =
 New shortcode: menu to insert pagelists or sitemaps
 
@@ -69,6 +71,7 @@ all new
 
 
 == Upgrade notice ==
+
 = 1.2.0 =
 New shortcode: menu to insert pagelists or sitemaps
 
