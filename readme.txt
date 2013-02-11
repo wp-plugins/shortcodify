@@ -35,7 +35,7 @@ See some **possible shortcodes** below:
 = Is a useful shortcode missing? =
 Please send me a request!
 
-Version: trunk
+Version: 1.2.0
 
 == Installation ==
 
@@ -44,7 +44,7 @@ Version: trunk
 3. Have a look to the settings page.
 4. Use the shortcodes in tiny-field.
 
-Version: trunk
+Version: 1.2.0
 
 == Frequently asked questions ==
 
@@ -74,9 +74,3 @@ all new
 
 = 1.2.0 =
 New shortcode: menu to insert pagelists or sitemaps
-
-= 1.1.0 =
-New functions, new shortcode
-
-= 1.0.0 =
-First version of plugin
