@@ -59,7 +59,6 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
-
 = 1.2.0 =
 New shortcode: menu to insert pagelists or sitemaps
 
@@ -71,6 +70,5 @@ all new
 
 
 == Upgrade notice ==
-
 = 1.2.0 =
 New shortcode: menu to insert pagelists or sitemaps
