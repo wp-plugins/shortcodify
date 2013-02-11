@@ -74,9 +74,3 @@ all new
 
 = 1.2.0 =
 New shortcode: menu to insert pagelists or sitemaps
-
-= 1.1.0 =
-New functions, new shortcode
-
-= 1.0.0 =
-First version of plugin
