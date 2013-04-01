@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-02-11 00:24+0100\n"
+"PO-Revision-Date: 2013-02-10 22:26+0100\n"
 "Last-Translator: Arne Lorenz <me@arnelorenz.de>\n"
 "Language-Team: Arne Lorenz <me@arnelorenz.de>\n"
 "X-Generator: Poedit 1.5.5\n"
@@ -17,15 +17,15 @@ msgstr ""
 
 #: shortcodify.php:78
 msgid "Bookmarks"
-msgstr "Links"
+msgstr ""
 
 #: shortcodify.php:196
 msgid "Shortcodify Menu"
-msgstr "Shortcodify Menü"
+msgstr ""
 
 #: shortcodify.php:235
 msgid "Add this widget to an other textfield with [widget]"
-msgstr "Dieses Widget lässt sich mit [widget] an beliebiger Stelle einfügen."
+msgstr ""
 
 #: shortcodify.php:301 shortcodify.php:342
 msgid "Settings"
@@ -37,7 +37,7 @@ msgstr "Ihre Einstellungen wurde gespeichert"
 
 #: shortcodify.php:332
 msgid "Whoops! There was a problem with the data you posted. Please try again."
-msgstr "Ups, da gab es ein Problem beim Speichern. Tut mir leid"
+msgstr ""
 
 #: shortcodify.php:339
 msgid "Shortcodify settings"
@@ -53,12 +53,11 @@ msgstr ""
 
 #: shortcodify.php:347
 msgid "Create widget-shortcode"
-msgstr "Erzeugt einen Widget-Shortcode "
+msgstr ""
 
 #: shortcodify.php:350
 msgid "Creates a widget-area for a shortcode. Use it with [widget] "
 msgstr ""
-"Erzeugt einen Widget-Bereich für einen Shortcode. Nutzbar über [widget]"
 
 #: shortcodify.php:353
 msgid "Create menu-shortcode"
@@ -129,14 +128,14 @@ msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Shortcodify"
-msgstr "Shortcodify"
+msgstr ""
 
 #. #-#-#-#-#  plugin.pot (Shortcodify 1.0.0)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
 #. #-#-#-#-#  plugin.pot (Shortcodify 1.0.0)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://www.arnelorenz.de/"
-msgstr "http://www.arnelorenz.de/"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid "Plugin to add shortcodes"
@@ -144,4 +143,4 @@ msgstr "Plugin um nützliche Shortcodes zu WordPress hinzuzufügen"
 
 #. Author of the plugin/theme
 msgid "Arne Lorenz"
-msgstr "Arne Lorenz"
+msgstr ""

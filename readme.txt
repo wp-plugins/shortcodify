@@ -30,12 +30,14 @@ See some **possible shortcodes** below:
 *   `[widget]` - inserts the content of the "Shortcodify" widget area
 *   `[random] Text1 Text2 [/random]` - returns only one of included areas (seperated by linebreak or whatever)
 *   `[menu]` - adds a new menu to the nav-menus of WordPress. This shortcode inserts the content to the page for sitemaps or sitelist.
+*   `[accordion]` - adds a jQueryIU accordion to the page 
+*   `[section]` - adds a section to the accordion. Use it inside the `[accordion]` shortcode.
 *   A few more useful shortcodes
 
 = Is a useful shortcode missing? =
 Please send me a request!
 
-Version: trunk
+Version: 1.2.0
 
 == Installation ==
 
@@ -44,7 +46,6 @@ Version: trunk
 3. Have a look to the settings page.
 4. Use the shortcodes in tiny-field.
 
-Version: trunk
 
 == Frequently asked questions ==
 

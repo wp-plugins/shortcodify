@@ -9,7 +9,7 @@ along with this software. In the main directory, see: /licensing/
 If not, see: <http://www.gnu.org/licenses/>.
 */
 /*
-Version: TRUNK --> Set version number HERE
+Version: 1.3.0
 
 Author URI: http://www.arnelorenz.de/
 Author: Arne Lorenz
@@ -24,8 +24,7 @@ if (!class_exists('shortcodify')) {
 		/**
 		 * @var string The plugin version
 		 */
-		var $version = '1.0.0';
-		var $version = 'TRUNK';
+		var $version = '1.3.0';
 		/**
 		 * @var string The options string name for this plugin
 		 */
@@ -138,11 +137,26 @@ if (!class_exists('shortcodify')) {
 			{
 				$this->useMenus();
 			}
+			
+			// To use a accordion
+			if($this->options['sc_accordion'])
+			{
+				$this->useAccordion();
+			}
 		}
 		
-		//function wrap_shortcode_func($atts, $content= NULL)
-
+		/*
+			Function for small shortcode handling
+			instead of: function wrap_shortcode_func($atts, $content= NULL)
+		*/
 		public function __call($name, $argumente) {
+			// for calling the widget functions
+			if(substr($name, 0, 12) == 'createWidget'){
+				$parts = explode('-', $name);
+				$name = $parts[0];
+				$number = $parts[1];
+			}
+			
 			$atts = $argumente[0];
 			$content = $argumente[1];
 			switch($name){
@@ -171,11 +185,16 @@ if (!class_exists('shortcodify')) {
 				break;
 				case 'random':
 					if( isset( $atts['trennzeichen'] ) ) $trenner = $atts['trennzeichen'];
+					elseif( isset( $atts['separator'] ) ) $trenner = $atts['separator'];
 					else {$trenner = PHP_EOL;}
 					
 					$content = explode($trenner, $content);
 					$rnd = rand(0, count($content) - 1);
 					$rtn = '<span class="wrap_shortcode random">'.do_shortcode( $content[ $rnd ] ).'</span>';
+				break;
+				case 'createWidget':
+					$html = $this->getWidgetContent('Shortcodify '.$number);
+					return '<div class="shortcodify_widget sc_w'.$number.'">'.$html.'</div>';
 				break;
 				default:
 					$rtn = $content;
@@ -186,7 +205,43 @@ if (!class_exists('shortcodify')) {
 		function useWidgets(){
 			add_action( 'widgets_init', array(&$this, 'shortcodify_widgets_init') );
 			add_shortcode( 'widget', array(&$this, 'createWidget') );
+			for ($i=1; $i<= $this->options['sc_widget_number']+1; $i++){
+				// i dont know how to give this function-call an parameter :(
+				// so i use this _call method
+				add_shortcode( 'widget'.$i, array(&$this, 'createWidget-'.$i ) );
+			}
 		}
+		
+		function useAccordion(){
+		    //Register with hook 'wp_enqueue_scripts', which can be used for front end CSS and JavaScript
+	     	add_action( 'wp_enqueue_scripts', array(&$this,'loadCss') );
+			add_action( 'wp_enqueue_scripts', array(&$this,'loadJs') );
+			add_shortcode( 'accordion', array(&$this, 'createAccordion') );
+			add_shortcode( 'section', array(&$this, 'createAccordionSection') );
+		}
+		function loadJs() {
+			wp_enqueue_script('jquery');
+	    	wp_enqueue_script('jquery-ui-accordion');
+	    	wp_enqueue_script(
+				'shortcodify',
+				plugins_url('/js/shortcodify.js', __FILE__),
+				array('jquery'),
+				false,
+				true
+			);
+    	}
+	    /**
+	     * Enqueue plugin style-file
+	     */
+	    function loadCss() {
+	        // Respects SSL, Style.css is relative to the current file
+	        // this css changes some font-sizes etc. :(
+	        //wp_register_style( 'jquery-ui-default', 'http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css' );
+	        //wp_enqueue_style( 'jquery-ui-default' );
+	        // we use this
+	        wp_register_style( 'shortcodify', plugins_url('css/shortcodify.css', __FILE__) );
+	        wp_enqueue_style( 'shortcodify' );
+	    }
 		
 		function useMenus(){
 			add_action( 'init', array(&$this, 'register_my_menus') );
@@ -208,9 +263,9 @@ if (!class_exists('shortcodify')) {
 			return $html;			
 		}		
 		
-		function createWidget() {
-			$html = $this->getWidgetContent('Shortcodify');
-			return '<div class="shortcodify_widget">'.$html.'</div>';
+		function createWidget($number) {
+			$html = $this->getWidgetContent('Shortcodify '.$number);
+			return '<div class="shortcodify_widget sc_w'.$number.'">'.$html.'</div>';
 		}	
 		
 		// menu shortcode output
@@ -223,35 +278,58 @@ if (!class_exists('shortcodify')) {
 			return '<div class="shortcodify_menu">'.$html.'</div>';
 		}
 
-		//adds a widget Area
+		function createAccordion($atts, $content = NULL){
+			//$atts['link']
+			if(isset($atts['type'])) $name = $atts['type'];
+			else $name = 'no-auto';
+			
+			$ausgabe = trim($content);
+			//preg_match_all('/\[section\].*\[\/section\]/', $content, $ausgabe);
+			
+			// remove whitespace at beginning
+			$ausgabe = preg_replace('/\A.*?\[section/s', '[section', $ausgabe);
+			// remove whitespace at end of sting
+			$ausgabe = preg_replace('/\A.*?\]noitces\/\[/s', ']noitces/[', strrev($ausgabe));
+			$ausgabe = strrev($ausgabe);
+			// remove whitespace between tags
+			$ausgabe = preg_replace('/\[\/section\].*?\[section/s', '[/section][section', $ausgabe);
+			
+			$rtn = '<div class="sc_accordion '.$name.'">'.do_shortcode( $ausgabe ).'</div>';
+			return $rtn;
+		}
+		function createAccordionSection($atts, $content = NULL){
+			$rtn = '<h3>'.$atts['name'].'</h3><div>'.do_shortcode($content).'</div>';
+			return $rtn;
+		}
 		/**
-		 * Register our sidebars and widgetized areas. 
+		 * Adds a widget Area
 		 *
 		 */
 		function shortcodify_widgets_init() 
 		{
-			register_sidebar( array(
+			$conf = array(
 				'name' => 'Shortcodify',
 				'id' => 'shortcodify',
-				'description' => __( 'Add this widget to an other textfield with [widget]' ),
+				'description' => __( 'Add this widget to an other textfield with [widget]' , $this->localizationDomain),
 				'before_widget' => '<p class="shortcodify_widget">',
 				'after_widget' => '</p>',
 				'before_title' => '<h2>',
 				'after_title' => '</h2>',
-			) );
-			/*
-			register_sidebar( array(
-				'name' => 'disclaimer',
-				'id' => 'disclaimer',
-				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-				'after_widget' => "</aside>",
-				'before_title' => '<h3 class="widget-title">',
-				'after_title' => '</h3>',
-			) );
-			*/
-		/*	// add this to tmeplate
-			<?php if ( ! dynamic_sidebar( 'name' ) ) :?><?php endif;?>
-		*/
+			);
+			register_sidebar( $conf );
+			
+			for ($i=1; $i<=$this->options['sc_widget_number']+1; $i++){
+				$conf = array(
+					'name' => 'Shortcodify '.$i,
+					'id' => 'shortcodify'.$i,
+					'description' => __( 'Add this widget to an other textfield with [widget'.$i.']' , $this->localizationDomain),
+					'before_widget' => '<p class="shortcodify_widget sc_w'.$i.'">',
+					'after_widget' => '</p>',
+					'before_title' => '<h2>',
+					'after_title' => '</h2>',
+				);
+				register_sidebar( $conf );
+			}
 		}
 
 		/**
@@ -261,8 +339,10 @@ if (!class_exists('shortcodify')) {
 		function get_options() {
 			if (!$options = get_option($this->optionsName)) {
 				$options = array(
-					'sc_widget' => true
-					//'sc_menu' => true
+					'sc_widget' => true,
+					'sc_widget_number' => 0,
+					'sc_menu' => true,
+					'sc_accordion' => true
 					/*
 					'title' => 'Pages:',
 					'nextpage' => '&raquo;',
@@ -312,8 +392,11 @@ if (!class_exists('shortcodify')) {
 			if (isset($_POST['wp_test_save'])) {
 				if (wp_verify_nonce($_POST['_wpnonce'], 'wp-test-update-options')) {
 					$this->options['sc_widget'] = (isset($_POST['sc_widget']) && $_POST['sc_widget'] === 'on') ? true : false;
+					$this->options['sc_widget_number'] = (int)$_POST['sc_widget_number'];
+					
 					$this->options['sc_menu'] = (isset($_POST['sc_menu']) && $_POST['sc_menu'] === 'on') ? true : false;
-					/*
+					$this->options['sc_accordion'] = (isset($_POST['sc_accordion']) && $_POST['sc_accordion'] === 'on') ? true : false;
+					/* 
 					$this->options['title'] = $_POST['title'];
 					$this->options['previouspage'] = $_POST['previouspage'];
 					$this->options['nextpage'] = $_POST['nextpage'];
@@ -349,61 +432,69 @@ if (!class_exists('shortcodify')) {
 				<input type="checkbox" id="sc_widget" name="sc_widget" <?php echo ($this->options['sc_widget'] === true) ? "checked='checked'" : ""; ?>/> <?php 
 				_e('Creates a widget-area for a shortcode. Use it with [widget]', $this->localizationDomain); ?></label></td>
 		</tr>
-		<tr valign="top" style="display: ">
+		<tr valign="top">
+			<th scope="row"><?php _e('Number of widgets to create', $this->localizationDomain); ?></th>
+			<td>
+				<select name="sc_widget_number" id="sc_widget_number">
+				<?php for ($i=0; $i<= 20; $i++) : ?>
+					<option value="<?php echo $i; ?>" <?php echo ($i == $this->options['sc_widget_number']) ? "selected='selected'" : ""; ?>><?php echo $i; ?></option>
+				<?php endfor; ?>
+				</select>
+				<span class="description"><?php _e('Select the number of widgets you want to create.', $this->localizationDomain); ?></span></td>
+		</tr>
+		<tr valign="top">
 			<th scope="row"><?php _e('Create menu-shortcode', $this->localizationDomain); ?></th>
 			<td><label for="empty">
 				<input type="checkbox" id="sc_menu" name="sc_menu" <?php echo ($this->options['sc_menu'] === true) ? "checked='checked'" : ""; ?>/> <?php 
 				_e('Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. Use shortcode with [menu] ', $this->localizationDomain); ?></label></td>
 		</tr>
-	
-		<tr valign="top" style="display: none">
-			<th scope="row"><?php _e('Before Markup:', $this->localizationDomain); ?></th>
-			<td><input name="before" type="text" id="before" size="40" value="<?php echo stripslashes(htmlspecialchars($this->options['before'])); ?>"/>
-			<span class="description"><?php _e('The HTML markup to display before the pagination code.', $this->localizationDomain); ?></span></td>
+		<tr valign="top">
+			<th scope="row"><?php _e('Create accordion-shortcode', $this->localizationDomain); ?></th>
+			<td><label for="empty">
+				<input type="checkbox" id="sc_accordion" name="sc_accordion" <?php echo ($this->options['sc_accordion'] === true) ? "checked='checked'" : ""; ?>/> <?php 
+				_e('Creates a <a href="http://jqueryui.com/accordion/" target="_blank">accordion</a> shortcode. ', $this->localizationDomain); ?></label></td>
 		</tr>
+		
+	<?php /*
 		<tr valign="top" style="display: none">
-			<th scope="row"><?php _e('After Markup:', $this->localizationDomain); ?></th>
-			<td><input name="after" type="text" id="after" size="40" value="<?php echo stripslashes(htmlspecialchars($this->options['after'])); ?>"/>
-			<span class="description"><?php _e('The HTML markup to display after the pagination code.', $this->localizationDomain); ?></span></td>
-		</tr>
-		<tr valign="top" style="display: none">
-			<th scope="row"><?php _e('WP-Paginate CSS File:', $this->localizationDomain); ?></th>
+			<th scope="row"><?php _e('...', $this->localizationDomain); ?></th>
 			<td><label for="css">
 				<input type="checkbox" id="css" name="css" <?php echo ($this->options['css'] === true) ? "checked='checked'" : ""; ?>/> <?php printf(__('Include the default stylesheet wp-paginate.css? WP-Paginate will first look for <code>wp-paginate.css</code> in your theme directory (<code>themes/%s</code>).', $this->localizationDomain), get_template()); ?></label></td>
 		</tr>
 		<tr valign="top" style="display: none">
-			<th scope="row"><?php _e('Page Range:', $this->localizationDomain); ?></th>
+			<th scope="row"><?php _e('...', $this->localizationDomain); ?></th>
 			<td>
 				<select name="range" id="range">
 				<?php for ($i=1; $i<=10; $i++) : ?>
 					<option value="<?php echo $i; ?>" <?php echo ($i == $this->options['range']) ? "selected='selected'" : ""; ?>><?php echo $i; ?></option>
 				<?php endfor; ?>
 				</select>
-				<span class="description"><?php _e('The number of page links to show before and after the current page. Recommended value: 3', $this->localizationDomain); ?></span></td>
+				<span class="description"><?php _e('...', $this->localizationDomain); ?></span></td>
 		</tr>
 		<tr valign="top" style="display: none">
-			<th scope="row"><?php _e('Page Anchors:', $this->localizationDomain); ?></th>
+			<th scope="row"><?php _e('...', $this->localizationDomain); ?></th>
 			<td>
 				<select name="anchor" id="anchor">
 				<?php for ($i=0; $i<=10; $i++) : ?>
 					<option value="<?php echo $i; ?>" <?php echo ($i == $this->options['anchor']) ? "selected='selected'" : ""; ?>><?php echo $i; ?></option>
 				<?php endfor; ?>
 				</select>
-				<span class="description"><?php _e('The number of links to always show at beginning and end of pagination. Recommended value: 1', $this->localizationDomain); ?></span></td>
+				<span class="description"><?php _e('...', $this->localizationDomain); ?></span></td>
 		</tr>
 		<tr valign="top" style="display: none">
-			<th scope="row"><?php _e('Page Gap:', $this->localizationDomain); ?></th>
+			<th scope="row"><?php _e('...', $this->localizationDomain); ?></th>
 			<td>
 				<select name="gap" id="gap">
 				<?php for ($i=1; $i<=10; $i++) : ?>
 					<option value="<?php echo $i; ?>" <?php echo ($i == $this->options['gap']) ? "selected='selected'" : ""; ?>><?php echo $i; ?></option>
 				<?php endfor; ?>
 				</select>
-				<span class="description"><?php _e('The minimum number of pages in a gap before an ellipsis (...) is added. Recommended value: 3', $this->localizationDomain); ?></span></td>
+				<span class="description"><?php _e('', $this->localizationDomain); ?></span></td>
 		</tr>
+		*/?>
 	</table>
 	<p class="submit">
-		<input type="submit" value="<?php _e('Save Changes'); ?>" name="wp_test_save" class="button-primary" />
+		<input type="submit" value="<?php _e('Save Changes', $this->localizationDomain); ?>" name="wp_test_save" class="button-primary" />
 	</p>
 </form>
 </div>
@@ -419,7 +510,7 @@ class ShortcodifyWidget extends WP_Widget {
 
 	function ShortcodifyWidget() {
 		// Instantiate the parent object
-		parent::__construct( false, 'My New Widget Title' );
+		parent::__construct( false, 'The Widget Title' );
 	}
 
 	function widget( $args, $instance ) {
