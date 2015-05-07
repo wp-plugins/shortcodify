@@ -3,7 +3,7 @@ Contributors: lrnz
 Donate link: 
 Tags: shortcode,shortcodes,tiny,rte,widget,widgets,menu,sitemap,menu,menus
 Requires at least: 3.0
-Tested up to: 3.5.1
+Tested up to: 4.2.2
 Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -37,7 +37,7 @@ See some **possible shortcodes** below:
 = Is a useful shortcode missing? =
 Please send me a request!
 
-Version: 1.3.0
+Version: 1.3.1
 
 == Installation ==
 
@@ -60,6 +60,9 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
+= 1.3.1 =
+Code cleanup, testing up to newest WordPress version, German Translation
+
 = 1.3.0 =
 New shortcode: accordion, multiple widget areas
 
@@ -74,5 +77,5 @@ all new
 
 
 == Upgrade notice ==
-= 1.3.0 =
-Multiple widget areas possible
+= 1.3.1 =
+Code cleanup, testing up to newest WordPress version
