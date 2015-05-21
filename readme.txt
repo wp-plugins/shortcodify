@@ -1,10 +1,10 @@
 === Shortcodify ===
 Contributors: lrnz
 Donate link: 
-Tags: shortcode,shortcodes,tiny,rte,widget,widgets,menu,sitemap,menu,menus
+Tags: shortcode,shortcodes,tiny,rte,widget,widgets,menu,sitemap,menu,menus,youtube,tab,tabs
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,12 +32,15 @@ See some **possible shortcodes** below:
 *   `[menu]` - adds a new menu to the nav-menus of WordPress. This shortcode inserts the content to the page for sitemaps or sitelist.
 *   `[accordion]` - adds a jQueryIU accordion to the page 
 *   `[section]` - adds a section to the accordion. Use it inside the `[accordion]` shortcode.
+*   `[youtube]videocode[/youtube]` - adds a video to the page. You can set the height and width as attribute: [youtube height=400 width=500]videocode[/youtube]
+*   `[tabs][tab name=One]Content 1[/tab][tab name=Two]Content 2[/tab][/tabs]` - Creates a Tab element with multiple tabs inside.
+ 
 *   A few more useful shortcodes
 
 = Is a useful shortcode missing? =
 Please send me a request!
 
-Version: 1.3.1
+Version: 1.4.0
 
 == Installation ==
 
@@ -60,6 +63,9 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
+= 1.4.0 =
+Two new Shortcodes: Youtube for a youtube video link and tabs for the jQueryUi Tabs
+
 = 1.3.1 =
 Code cleanup, testing up to newest WordPress version, German Translation
 
@@ -77,5 +83,5 @@ all new
 
 
 == Upgrade notice ==
-= 1.3.1 =
-Code cleanup, testing up to newest WordPress version
+= 1.4.0 =
+Two new Shortcodes: Youtube for a youtube video link and tabs for the jQueryUi Tabs
