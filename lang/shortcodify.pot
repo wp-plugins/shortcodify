@@ -1,0 +1,141 @@
+# Copyright (C) 2013 Shortcodify
+# This file is distributed under the same license as the Shortcodify package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shortcodify 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/shortcodify\n"
+"POT-Creation-Date: 2013-02-10 21:20:14+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: shortcodify.php:78
+msgid "Bookmarks"
+msgstr ""
+
+#: shortcodify.php:196
+msgid "Shortcodify Menu"
+msgstr ""
+
+#: shortcodify.php:235
+msgid "Add this widget to an other textfield with [widget]"
+msgstr ""
+
+#: shortcodify.php:301 shortcodify.php:342
+msgid "Settings"
+msgstr ""
+
+#: shortcodify.php:329
+msgid "Success! Your changes were successfully saved!"
+msgstr ""
+
+#: shortcodify.php:332
+msgid "Whoops! There was a problem with the data you posted. Please try again."
+msgstr ""
+
+#: shortcodify.php:339
+msgid "Shortcodify settings"
+msgstr ""
+
+#: shortcodify.php:343
+msgid ""
+"See all possible shortcodes <a href=\"http://www.arnelorenz.de/shortcodify/"
+"\">here</a>"
+msgstr ""
+
+#: shortcodify.php:347
+msgid "Create widget-shortcode"
+msgstr ""
+
+#: shortcodify.php:350
+msgid "Creates a widget-area for a shortcode. Use it with [widget] "
+msgstr ""
+
+#: shortcodify.php:353
+msgid "Create menu-shortcode"
+msgstr ""
+
+#: shortcodify.php:356
+msgid ""
+"Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. "
+"Use shortcode with [menu] "
+msgstr ""
+
+#: shortcodify.php:360
+msgid "Before Markup:"
+msgstr ""
+
+#: shortcodify.php:362
+msgid "The HTML markup to display before the pagination code."
+msgstr ""
+
+#: shortcodify.php:365
+msgid "After Markup:"
+msgstr ""
+
+#: shortcodify.php:367
+msgid "The HTML markup to display after the pagination code."
+msgstr ""
+
+#: shortcodify.php:370
+msgid "WP-Paginate CSS File:"
+msgstr ""
+
+#: shortcodify.php:372
+msgid ""
+"Include the default stylesheet wp-paginate.css? WP-Paginate will first look "
+"for <code>wp-paginate.css</code> in your theme directory (<code>themes/%s</"
+"code>)."
+msgstr ""
+
+#: shortcodify.php:375
+msgid "Page Range:"
+msgstr ""
+
+#: shortcodify.php:382
+msgid ""
+"The number of page links to show before and after the current page. "
+"Recommended value: 3"
+msgstr ""
+
+#: shortcodify.php:385
+msgid "Page Anchors:"
+msgstr ""
+
+#: shortcodify.php:392
+msgid ""
+"The number of links to always show at beginning and end of pagination. "
+"Recommended value: 1"
+msgstr ""
+
+#: shortcodify.php:395
+msgid "Page Gap:"
+msgstr ""
+
+#: shortcodify.php:402
+msgid ""
+"The minimum number of pages in a gap before an ellipsis (...) is added. "
+"Recommended value: 3"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Shortcodify"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (Shortcodify 1.0.0)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  plugin.pot (Shortcodify 1.0.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://www.arnelorenz.de/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Plugin to add shortcodes"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Arne Lorenz"
+msgstr ""
