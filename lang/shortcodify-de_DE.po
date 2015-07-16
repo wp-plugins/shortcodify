@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Shortcodify v1.3.1\n"
+"Project-Id-Version: Shortcodify v1.4.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/shortcodify\n"
 "POT-Creation-Date: 2013-02-10 21:20:14+00:00\n"
-"PO-Revision-Date: 2015-05-07 20:01:33+0000\n"
+"PO-Revision-Date: 2015-07-16 21:50:21+0000\n"
 "Last-Translator: Arne Lorenz <me@arnelorenz.de>\n"
 "Language-Team: Arne Lorenz <me@arnelorenz.de>\n"
 "MIME-Version: 1.0\n"
@@ -20,90 +20,100 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: shortcodify.php:75
+#: shortcodify.php:83
 #@ default
 msgid "Bookmarks"
 msgstr ""
 
-#: shortcodify.php:326
-#: shortcodify.php:338
+#: shortcodify.php:396
+#: shortcodify.php:408
 #@ shortcodify
 msgid "Add this widget to an other textfield with [widget]"
 msgstr "Füge dieses Widget im Textfeld mittels [widget] hinzu"
 
-#: shortcodify.php:402
-#: shortcodify.php:434
+#: shortcodify.php:455
+#: shortcodify.php:490
 #@ shortcodify
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: shortcodify.php:421
+#: shortcodify.php:476
 #@ shortcodify
 msgid "Success! Your changes were successfully saved!"
 msgstr "Ihre Einstellungen wurde gespeichert"
 
-#: shortcodify.php:423
+#: shortcodify.php:479
 #@ shortcodify
 msgid "Whoops! There was a problem with the data you posted. Please try again."
 msgstr "Uups... es gab ein Problem mit den Daten. Bitte versuche es nochmal."
 
-#: shortcodify.php:430
+#: shortcodify.php:486
 #@ shortcodify
 msgid "Shortcodify settings"
 msgstr "Shortcodify Einstellungen"
 
-#: shortcodify.php:435
+#: shortcodify.php:491
 #@ shortcodify
 msgid "See all possible shortcodes <a href=\"http://www.arnelorenz.de/shortcodify/\">here</a>"
 msgstr "Eine Liste aller verfügbaren Shortcodes unter: <a href=\"http://www.arnelorenz.de/shortcodify/\">here</a>"
 
-#: shortcodify.php:439
+#: shortcodify.php:495
 #@ shortcodify
 msgid "Create widget-shortcode"
 msgstr "Widget Shortcode erzeugen"
 
-#: shortcodify.php:460
+#: shortcodify.php:512
 #@ shortcodify
 msgid "Create menu-shortcode"
 msgstr "Menü-Shortcode erstellen"
 
-#: shortcodify.php:464
-#@ shortcodify
-msgid "Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. Use shortcode with [menu] "
-msgstr "Menu Bereich für Shortcodes erstellen. Das Menü kann als Sitemap o.Ä. genutzt werden. Einfügen über [menu]"
-
-#: shortcodify.php:259
+#: shortcodify.php:291
 #@ default
 msgid "Shortcodify Menu, for sitemaps"
 msgstr ""
 
-#: shortcodify.php:443
+#: shortcodify.php:499
 #@ shortcodify
 msgid "Creates a widget-area for a shortcode. Use it with [widget]"
 msgstr "Erzeugt einen neuen Widget-Bereich, der durch [widget] in die Seite eingefügt werden kann."
 
-#: shortcodify.php:447
+#: shortcodify.php:502
 #@ shortcodify
 msgid "Number of widgets to create"
 msgstr "Anzahl der neuen Widget-Bereiche"
 
-#: shortcodify.php:456
+#: shortcodify.php:509
 #@ shortcodify
 msgid "Select the number of widgets you want to create."
 msgstr "Wähle die Anzahl der neuen Widgets aus."
 
-#: shortcodify.php:468
+#: shortcodify.php:519
 #@ shortcodify
 msgid "Create accordion-shortcode"
 msgstr "Erstelle ein Accordion-Widget"
 
-#: shortcodify.php:472
-#@ shortcodify
-msgid "Creates a <a href=\"http://jqueryui.com/accordion/\" target=\"_blank\">accordion</a> shortcode. "
-msgstr "Erstellt ein <a href=\"http://jqueryui.com/accordion/\" target=\"_blank\">Accordion</a> Shortcode. Der später genutzt werden kann."
-
-#: shortcodify.php:478
+#: shortcodify.php:534
 #@ shortcodify
 msgid "Save Changes"
 msgstr "Speichern"
+
+#: shortcodify.php:516
+#@ shortcodify
+msgid "Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. Use shortcode with [menu]"
+msgstr "Erzeugt einen neuen Menü-Bereich. Dieser kann z.B. für eine Sitemap oder eine Liste von Seiten benutzt werden. Du musst nur ein neues Menü anlegen und diesem Bereich zuweisen. Im Anschluss lässt sich das Menü über [menu] einfügen."
+
+#: shortcodify.php:523
+#@ shortcodify
+msgid "Creates a <a href=\"http://jqueryui.com/accordion/\" target=\"_blank\">accordion</a> shortcode."
+msgstr "Erzeugt ein <a href=\"http://jqueryui.com/accordion/\" target=\"_blank\">Accordion</a> Shortcode."
+
+#: shortcodify.php:526
+#@ shortcodify
+msgid "Create tabs-shortcode"
+msgstr "Erzeugt Tab-Shortcodes"
+
+#: shortcodify.php:529
+#@ shortcodify
+msgid "Creates a <a href=\"http://jqueryui.com/tabs/\" target=\"_blank\">tabs</a> shortcode."
+msgstr "Erzeugt einen Shortcode für jQuery UI<a href=\"http://jqueryui.com/tabs/\" target=\"_blank\">Tabs</a>."
 

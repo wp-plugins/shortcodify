@@ -4,7 +4,7 @@ Donate link:
 Tags: shortcode,shortcodes,tiny,rte,widget,widgets,menu,sitemap,menu,menus,youtube,tab,tabs
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,7 +40,7 @@ See some **possible shortcodes** below:
 = Is a useful shortcode missing? =
 Please send me a request!
 
-Version: 1.4.0
+Version: 1.4.1
 
 == Installation ==
 
@@ -63,6 +63,9 @@ Please ask me.
 3. The output of the shortcodes
 
 == Changelog ==
+= 1.4.1 =
+New Translations
+
 = 1.4.0 =
 Two new Shortcodes: Youtube for a youtube video link and tabs for the jQueryUi Tabs
 
@@ -83,5 +86,5 @@ all new
 
 
 == Upgrade notice ==
-= 1.4.0 =
-Two new Shortcodes: Youtube for a youtube video link and tabs for the jQueryUi Tabs
+= 1.4.1 =
+New Translations

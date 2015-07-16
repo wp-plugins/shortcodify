@@ -513,20 +513,20 @@ if (!class_exists('shortcodify')) {
 			<td><label for="empty">
 									<input type="checkbox" id="sc_menu"
 									       name="sc_menu" <?php echo ( $this->options['sc_menu'] === TRUE ) ? "checked='checked'" : ""; ?>/> <?php
-				_e('Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. Use shortcode with [menu] ', $this->localizationDomain); ?></label></td>
+				_e('Creates a menu-area for a shortcode. Create a new menu e.g. for a sitemap. Use shortcode with [menu]', $this->localizationDomain); ?></label></td>
 		</tr>
 		<tr valign="top">
 			<th scope="row"><?php _e('Create accordion-shortcode', $this->localizationDomain); ?></th>
 			<td><label for="empty">
 									<input type="checkbox" id="sc_accordion"
 									       name="sc_accordion" <?php echo ( $this->options['sc_accordion'] === TRUE ) ? "checked='checked'" : ""; ?>/> <?php
-				_e('Creates a <a href="http://jqueryui.com/accordion/" target="_blank">accordion</a> shortcode. ', $this->localizationDomain); ?></label></td>
+				_e('Creates a <a href="http://jqueryui.com/accordion/" target="_blank">accordion</a> shortcode.', $this->localizationDomain); ?></label></td>
 		</tr>
 		<tr valign="top">
 			<th scope="row"><?php _e('Create tabs-shortcode', $this->localizationDomain); ?></th>
 			<td><label for="empty">
 				<input type="checkbox" id="sc_tabs" name="sc_tabs" <?php echo ($this->options['sc_tabs'] === true) ? "checked='checked'" : ""; ?>/> <?php 
-				_e('Creates a <a href="http://jqueryui.com/tabs/" target="_blank">tabs</a> shortcode. ', $this->localizationDomain); ?></label></td>
+				_e('Creates a <a href="http://jqueryui.com/tabs/" target="_blank">tabs</a> shortcode.', $this->localizationDomain); ?></label></td>
 		</tr>
 		
 	</table>
